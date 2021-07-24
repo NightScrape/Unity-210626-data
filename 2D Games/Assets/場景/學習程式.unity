@@ -180,33 +180,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 224b628d31b1fce40b13440cd02e7702, type: 3}
---- !u!1 &409374730 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6815145149961154510, guid: 224b628d31b1fce40b13440cd02e7702, type: 3}
-  m_PrefabInstance: {fileID: 134244607}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &409374731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 409374730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 545c7f1e47d32a0468f8f109838ac75e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  a: 10
-  b: 3
-  c: 7
-  hp: 80
-  ScoreA: 99
-  ScoreB: 1
-  health: 50
-  key: 1
-  coin: 4
-  jewel: 3
 --- !u!1 &983348632
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +273,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1557626625}
   - component: {fileID: 1557626624}
-  - component: {fileID: 1557626626}
   m_Layer: 0
   m_Name: "\u5357\u74DC\u8ECA"
   m_TagString: Untagged
@@ -373,42 +345,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1557626626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1557626623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5ef1e19da34d144184f76cf2bdd45b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weight: 3.5
-  cc: 2000
-  brand: "\u8CD3\u58EB"
-  windowSky: 1
-  "\u8F2A\u80CE\u6578\u91CF": 4
-  windownumber: 4
-  height: 1.5
-  doorcount: 0
-  color1: {r: 0, g: 0, b: 0, a: 0}
-  blue: {r: 0, g: 0, b: 1, a: 1}
-  colorcustom1: {r: 0.8, g: 0.5, b: 0, a: 1}
-  colorcustom2: {r: 0.5, g: 0.3, b: 0.5, a: 0.5}
-  v2: {x: 0, y: 0}
-  v2zero: {x: 0, y: 0}
-  v2one: {x: 1, y: 1}
-  v2Up: {x: 0, y: 1}
-  v2Right: {x: 1, y: 0}
-  v2custom: {x: 20, y: -60}
-  kc: 0
-  forward: 100
-  attack: 328
-  GoCamera: {fileID: 983348632}
-  Cartrs: {fileID: 0}
-  sprPic: {fileID: 0}
 --- !u!1 &1806220216
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,8 +355,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1806220219}
   - component: {fileID: 1806220218}
-  - component: {fileID: 1806220220}
   - component: {fileID: 1806220217}
+  - component: {fileID: 1806220220}
   m_Layer: 0
   m_Name: "\u7BB1\u578B\u8ECA"
   m_TagString: Untagged
@@ -437,33 +373,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1806220216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5ef1e19da34d144184f76cf2bdd45b6, type: 3}
+  m_Script: {fileID: 11500000, guid: a086754aefae2fa40bf3f78db56def98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 7.2
-  cc: 3000
-  brand: BMW
-  windowSky: 0
-  "\u8F2A\u80CE\u6578\u91CF": 4
-  windownumber: 4
-  height: 1.5
-  doorcount: 0
-  color1: {r: 0, g: 0, b: 0, a: 0}
-  blue: {r: 0, g: 0, b: 1, a: 1}
-  colorcustom1: {r: 0.5, g: 0.5, b: 0, a: 1}
-  colorcustom2: {r: 0.5, g: 0, b: 0.5, a: 0.5}
-  v2: {x: 0, y: 0}
-  v2zero: {x: 0, y: 0}
-  v2one: {x: 1, y: 1}
-  v2Up: {x: 0, y: 1}
-  v2Right: {x: 1, y: 0}
-  v2custom: {x: 20, y: -60}
-  kc: 0
-  forward: 100
-  attack: 323
-  GoCamera: {fileID: 0}
-  Cartrs: {fileID: 0}
-  sprPic: {fileID: 0}
+  hp: 70
 --- !u!212 &1806220218
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -523,7 +436,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806220216}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.33, y: 0.7, z: 0}
+  m_LocalPosition: {x: 2.64, y: 4.37, z: 0}
   m_LocalScale: {x: 1.8605, y: 1.8605, z: 1.8605}
   m_Children: []
   m_Father: {fileID: 0}
@@ -536,12 +449,8 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806220216}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66b0508705e34684788012b0f4f7a901, type: 3}
+  m_Script: {fileID: 11500000, guid: ca0d2844ba29a49488ea87f5622b20d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 10.5
-  jumpheight: 100
-  hp: 100
-  onfloor: 0
