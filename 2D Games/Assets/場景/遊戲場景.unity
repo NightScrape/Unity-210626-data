@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 596189581}
   - component: {fileID: 596189584}
   - component: {fileID: 596189585}
+  - component: {fileID: 596189586}
   m_Layer: 0
   m_Name: "\u73A9\u5BB6"
   m_TagString: Untagged
@@ -266,7 +267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596189580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.67, y: -1.59, z: 0}
+  m_LocalPosition: {x: -8.29, y: -1.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -309,6 +310,23 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -1.6}
   m_Size: {x: 0.75, y: 1.8}
   m_Direction: 0
+--- !u!114 &596189586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596189580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b0508705e34684788012b0f4f7a901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movespeed: 10.5
+  jumpheight: 2000
+  hp: 100
+  onfloor: 1
+  gravity: 0.01
 --- !u!1 &632095345 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6815145149961154510, guid: 224b628d31b1fce40b13440cd02e7702, type: 3}
@@ -3494,11 +3512,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7868819657682773963, guid: a21f5a256bed6a94abf8016cee868018, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.16463995
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 7868819657682773963, guid: a21f5a256bed6a94abf8016cee868018, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.9369848
+      value: -2.85
       objectReference: {fileID: 0}
     - target: {fileID: 7868819657682773963, guid: a21f5a256bed6a94abf8016cee868018, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4631,7 +4649,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1963344843
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4736,7 +4754,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1963344842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.479423, y: -3.517052, z: -534.913}
+  m_LocalPosition: {x: -14.76, y: 0.47, z: -534.913}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
