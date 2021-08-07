@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     private AudioSource aud;
     private Rigidbody2D rig;
     private Animator ani;
+    [Header("攻擊冷卻"),Range(0,5)]
+    public float cd = 2;
 
     #endregion
     #region 事件
@@ -36,6 +38,7 @@ public class Player : MonoBehaviour
         GetPlayerInputHorizontal();
         TurnDirection();
         Jump();
+        Attack();
     }
     //固定更新事件:一秒固定更新50次
     //官方建議使用到物理API時於此處進行
@@ -122,10 +125,28 @@ public class Player : MonoBehaviour
         }
     }
     /// <summary>
+    /// 設定計時器
+    /// </summary>
+    private float timer;
+    /// <summary>
+    ///確定是否攻擊 
+    /// </summary>
+    private bool isAttack;
+    /// <summary>
     /// 攻擊
     /// </summary>
     private void Attack()
     {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            ani.SetTrigger("攻擊觸發");
+            isAttack = true;
+        }
+        if (isAttack)
+        {
+            timer += Time.deltaTime;
+            print("攻後累加時間"+timer);
+        }
 
     }
     /// <summary>
