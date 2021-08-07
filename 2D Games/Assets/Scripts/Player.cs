@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     private Animator ani;
 
     #endregion
-    #region
+    #region 事件
     private void Start()
     {
         //GetComponent<>()為泛行發法,在<>中可輸入各類型
