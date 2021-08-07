@@ -47,7 +47,7 @@ public class LearningOperator : MonoBehaviour
         #region 邏輯運算子
         print("邏輯運算子");
 
-        print("比較");
+        print("並且");
         //比較兩者資料
         //並且 &&
         //只要一布林值為false,則結果為false
