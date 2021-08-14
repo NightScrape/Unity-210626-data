@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 73779551}
   - component: {fileID: 73779555}
   - component: {fileID: 73779554}
+  - component: {fileID: 73779556}
   m_Layer: 0
   m_Name: "\u5DEB\u5E2B"
   m_TagString: Untagged
@@ -256,7 +257,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 50
-  m_LinearDrag: 8
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 878fd4376e6b00f4cad954889298d0df, type: 2}
@@ -264,6 +265,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &73779556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73779550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bacedca079c432546a360f4ee36463b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
+  atk: 20
+  speed: 30
+  state: 0
 --- !u!1 &354759982
 GameObject:
   m_ObjectHideFlags: 0
@@ -5060,7 +5077,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6815145149961154510, guid: 224b628d31b1fce40b13440cd02e7702, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 224b628d31b1fce40b13440cd02e7702, type: 3}
@@ -5129,7 +5146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2977240280590328240, guid: 8e04fe03d0b8d72498266fc159c60176, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5263823402785419703, guid: 8e04fe03d0b8d72498266fc159c60176, type: 3}
       propertyPath: m_Material

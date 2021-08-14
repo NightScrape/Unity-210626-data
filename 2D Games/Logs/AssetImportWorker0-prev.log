@@ -15,11 +15,11 @@ D:/Github/Unity-210626-data/2D Games
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-64522
+63398
 Successfully changed project path to: D:/Github/Unity-210626-data/2D Games
 D:/Github/Unity-210626-data/2D Games
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 411.70 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1980.92 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.13f1 (71691879b7f5)
 [Subsystems] Discovering subsystems at path D:/Unity/2020.3.13f1/Editor/Data/Resources/UnitySubsystems
@@ -35,5 +35,5 @@ Initialize mono
 Mono path[0] = 'D:/Unity/2020.3.13f1/Editor/Data/Managed'
 Mono path[1] = 'D:/Unity/2020.3.13f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'D:/Unity/2020.3.13f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56128
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56244
 Begin MonoManager ReloadAssembly

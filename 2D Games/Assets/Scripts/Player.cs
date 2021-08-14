@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rig;
     private Animator ani;
     [Header("攻擊冷卻"),Range(0,5)]
-    public float cd = 2;
+    public float cd = 1;
 
     #endregion
     #region 事件
@@ -65,7 +65,6 @@ public class Player : MonoBehaviour
     {
         hValue = Input.GetAxis("Horizontal");  //水平值:輸入.取得軸向(軸向名稱)
                                                //作用:取得按下水平按鍵的值 右為1,左為-1,沒按為0
-        print("玩家水平值"+hValue);
     }
     /// <summary>
     /// 移動
@@ -137,15 +136,23 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Attack()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (!isAttack&&Input.GetKeyDown(KeyCode.Mouse0))
         {
             ani.SetTrigger("攻擊觸發");
             isAttack = true;
         }
         if (isAttack)
         {
-            timer += Time.deltaTime;
-            print("攻後累加時間"+timer);
+            if (timer < cd)
+            {
+                timer += Time.deltaTime;
+                print("攻後累加時間" + timer);
+            }
+            else
+            {
+                timer = 0;
+                isAttack = false;
+            }
         }
 
     }

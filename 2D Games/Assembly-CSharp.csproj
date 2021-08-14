@@ -58,13 +58,15 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\LearningOperator.cs" />
+    <Compile Include="Assets\Scripts\learnLerp.cs" />
     <Compile Include="Assets\Scripts\Car.cs" />
     <Compile Include="Assets\Scripts\APINonStatic.cs" />
     <Compile Include="Assets\Scripts\Example.cs" />
+    <Compile Include="Assets\Scripts\CameraControl.cs" />
     <Compile Include="Assets\Scripts\SceneController.cs" />
     <Compile Include="Assets\Scripts\APIStatic.cs" />
-    <Compile Include="Assets\Scripts\learnLerp.cs" />
-    <Compile Include="Assets\Scripts\CameraControl.cs" />
+    <Compile Include="Assets\Scripts\EnemyBase.cs" />
+    <Compile Include="Assets\Scripts\EnemyNear.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
