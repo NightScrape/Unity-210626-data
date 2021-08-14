@@ -146,7 +146,6 @@ public class Player : MonoBehaviour
             if (timer < cd)
             {
                 timer += Time.deltaTime;
-                print("攻後累加時間" + timer);
             }
             else
             {
