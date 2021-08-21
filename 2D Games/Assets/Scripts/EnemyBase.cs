@@ -24,6 +24,8 @@ public class EnemyBase : MonoBehaviour
     /// 隨機走路時間
     /// </summary>
     public Vector2 v2WalkRandom = new Vector2(3, 6);
+    [Header("第一次攻擊延遲"), Range(0.5f, 5)]
+    public float attackDelayFirst = 0.5f;
     #endregion
     #region 不公開欄位
     //將私人欄位顯示於屬性面板上
@@ -46,6 +48,7 @@ public class EnemyBase : MonoBehaviour
     private float timerWalk;
 
     #endregion
+    protected Player player;
     #region 事件
     private void Start()
     {
@@ -53,6 +56,8 @@ public class EnemyBase : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         aud = GetComponent<AudioSource>();
+
+        player = GameObject.Find("玩家").GetComponent<Player>();
         #endregion
         #region 設定初始值
         timeIdle = Random.Range(v2IdleRandom.x,v2IdleRandom.y);

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;  //引用介面API
 
 public class Player : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class Player : MonoBehaviour
     public float movespeed = 10.5f;
     [Header("跳躍高度"), Range(0, 3000)]
     public int jumpheight = 100;
-    [Range(0, 200)]
+    [Range(0, 1000)]
     public float hp = 100;
     [Header("是否在地板上"), Tooltip("顯示角色當前是否在地板上")]
     public bool onfloor;
@@ -23,8 +24,21 @@ public class Player : MonoBehaviour
     private Animator ani;
     [Header("攻擊冷卻"),Range(0,5)]
     public float cd = 1;
-
+    /// <summary>
+    /// 設定計時器
+    /// </summary>
+    private float timer;
+    /// <summary>
+    ///確定是否攻擊 
+    /// </summary>
+    private bool isAttack;
     #endregion
+    private Text textHP;
+    private Image imgHP;
+    /// <summary>
+    /// 最大血量值，在遊戲開始時取得
+    /// </summary>
+    public float HpMax;
     #region 事件
     private void Start()
     {
@@ -32,6 +46,10 @@ public class Player : MonoBehaviour
         //作用:取得該物件的鋼體元件
         rig = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
+
+        textHP = GameObject.Find("文字血量").GetComponent<Text>();
+        imgHP = GameObject.Find("血條").GetComponent<Image>();
+        HpMax = hp;
     }
     private void Update()
     {
@@ -91,12 +109,12 @@ public class Player : MonoBehaviour
     private void TurnDirection()
     {
         //如果玩家按D，則角度設定為(0,0,0)
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D)||Input.GetKeyDown(KeyCode.RightArrow))
         {
             transform.eulerAngles = Vector3.zero;
         }
         //如果玩家按A，則角度設定為(0,180,0)
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
         }
@@ -123,14 +141,7 @@ public class Player : MonoBehaviour
             
         }
     }
-    /// <summary>
-    /// 設定計時器
-    /// </summary>
-    private float timer;
-    /// <summary>
-    ///確定是否攻擊 
-    /// </summary>
-    private bool isAttack;
+
     /// <summary>
     /// 攻擊
     /// </summary>
@@ -161,12 +172,20 @@ public class Player : MonoBehaviour
     /// <param name="damage">造成的傷害</param>
     public void Injure(float damage)
     {
+        hp -= damage;   //血量扣除傷害值
 
+        if (hp <= 0) Death();  //血量歸零時死亡
+        textHP.text = "HP" + hp; //文字顯示"HP"+血量
+        imgHP.fillAmount = hp / HpMax;  // 圖片依據當前血量填滿顯示
     }
     /// <summary>
     /// 死亡
     /// </summary>
-    private void Death() { 
+    private void Death()
+    {
+        hp = 0;  //血量歸零
+        ani.SetBool("死亡動畫", true); //死亡動畫
+        enabled = false;  //關閉腳本
     }
     /// <summary>
     /// 吃道具

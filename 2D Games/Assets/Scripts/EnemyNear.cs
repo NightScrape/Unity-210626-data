@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;  //協同程序
 /// <summary>
 /// 近距離敵人類型:近距離攻擊
 /// </summary>
@@ -33,6 +34,25 @@ public class EnemyNear : EnemyBase
         Collider2D hit = Physics2D.OverlapBox(transform.position + transform.right *
             checkAttackOffset.x + transform.up * checkAttackOffset.y, checkAttaackSize,0,1 << 7);
         if (hit) state = StateEnemy.attack;
+    }
+    protected override void AttackMethod()
+    {
+        base.AttackMethod();
+        StartCoroutine(DamageDelayed());
+    }
+    /*協同程序用法
+     * 1.引用協同程序API System.Collection
+     * 2.傳回方法、類型為IEnumerator
+     * 3.以StartCoroutine()啟動程序
+     */
+    /// <summary>
+    /// 延遲傳遞傷害
+    /// </summary>
+    private IEnumerator DamageDelayed()
+    {
+        yield return new WaitForSeconds(attackDelayFirst);
+        print("第一次攻擊");
+        player.Injure(atk);
     }
     #endregion
 }
