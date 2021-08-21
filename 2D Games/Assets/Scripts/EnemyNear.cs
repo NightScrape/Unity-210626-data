@@ -10,6 +10,7 @@ public class EnemyNear : EnemyBase
     [Header("攻擊區域的位移及大小")]
     public Vector2 checkAttackOffset;
     public Vector3 checkAttaackSize;
+   
     #endregion
     #region 事件
     protected override void OnDrawGizmos()
@@ -67,6 +68,8 @@ public class EnemyNear : EnemyBase
                 else state = StateEnemy.walk;
             }
         }
+
     }
+
     #endregion
 }

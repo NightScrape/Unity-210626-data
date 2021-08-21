@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 /// <summary>
 /// 設定攝影機追蹤
 /// </summary>
@@ -47,4 +48,26 @@ public class CameraControl : MonoBehaviour
         transform.position = PosResult;
     }
     #endregion
+    [Header("晃動幅度"), Range(0, 5)]
+    public float shakeValue = 0.2f;
+    [Header("晃動次數"), Range(0, 20)]
+    public int shakeCount = 10;
+    [Header("晃動間隔"), Range(0, 5)]
+    public float shakeInterval = 0.3f;
+    /// <summary>
+    /// 晃動效果
+    /// </summary>
+    public IEnumerator ShakeEffect()
+    {
+        Vector3 PosOrigin = transform.position;  //取得攝影機晃動前的座標
+        for (int i = 0; i < shakeCount; i++)  //迴圈執行座標改動
+        {
+            Vector3 PosShake = PosOrigin;
+            if (i % 2 == 0) PosShake.x += shakeValue;  //i為偶數就往右
+            else PosShake.x -= shakeValue;             //i為奇數就往左
+            transform.position = PosShake;
+            yield return new WaitForSeconds(shakeInterval);
+        }
+        transform.position = PosOrigin;  //回復攝影機為原始座標
+    }
 }

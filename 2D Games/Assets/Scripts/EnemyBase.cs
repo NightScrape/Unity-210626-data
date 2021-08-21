@@ -15,7 +15,7 @@ public class EnemyBase : MonoBehaviour
     [Range(5, 1000)]
     public float atk = 20;
     [Range(1, 500)]
-    public float speed = 1.5f;    
+    public float speed = 1.5f;
     /// <summary>
     /// 隨機等待時間
     /// </summary>
@@ -24,6 +24,9 @@ public class EnemyBase : MonoBehaviour
     /// 隨機走路時間
     /// </summary>
     public Vector2 v2WalkRandom = new Vector2(3, 6);
+    [Range(0.5f, 5)]
+    public float cdAttack = 2;
+    private float timerAttack;
     /// <summary>
     /// 用陣列保存相同類型的表格，擁有編號與值兩份資料
     /// </summary>
@@ -31,6 +34,10 @@ public class EnemyBase : MonoBehaviour
     public float[] attacksDelay;
     [Header("攻擊完成後多久恢復原本狀態"), Range(0, 5)]
     public float attackRestore = 1;
+    [Header("掉落道具資料與機率")]
+    public GameObject goProp;
+    [Range(0, 1)]
+    public float propProbability = 0.5f;
     #endregion
     #region 不公開欄位
     //將私人欄位顯示於屬性面板上
@@ -69,7 +76,7 @@ public class EnemyBase : MonoBehaviour
         player = GameObject.Find("玩家").GetComponent<Player>();
         #endregion
         #region 設定初始值
-        timeIdle = Random.Range(v2IdleRandom.x,v2IdleRandom.y);
+        timeIdle = Random.Range(v2IdleRandom.x, v2IdleRandom.y);
         #endregion
     }
     protected virtual void Update()
@@ -93,8 +100,8 @@ public class EnemyBase : MonoBehaviour
     protected virtual void OnDrawGizmos()
     {
         Gizmos.color = new Color(1, 0.3f, 0.3f, 0.4f);
-        Gizmos.DrawSphere(transform.position + transform.right*
-            checkForwardOffset.x+transform.up*checkForwardOffset.y, checkForwardRadius);
+        Gizmos.DrawSphere(transform.position + transform.right *
+            checkForwardOffset.x + transform.up * checkForwardOffset.y, checkForwardRadius);
     }
     #endregion
     //陣列語法:任意可用類型+中括號 如:int[],float[],vector2[]
@@ -116,8 +123,8 @@ public class EnemyBase : MonoBehaviour
          * 2.陣列內是空的:表示沒地方站立
          * 查詢LinQ:可以查詢陣列內有無資料及有無特定資料
          */
-        hitResult = hits.Where(x => x.name != "跳台" && x.name != "地板"&&x.name!="玩家"&&x.name!= "可穿越跳台"&&x.name!="巫師").ToArray();
-        if(hits.Length == 0||hitResult.Length!=0)
+        hitResult = hits.Where(x => x.name != "跳台" && x.name != "地板" && x.name != "玩家" && x.name != "可穿越跳台" && x.name != "巫師").ToArray();
+        if (hits.Length == 0 || hitResult.Length != 0)
         {
             TurnDirection();
         }
@@ -159,7 +166,7 @@ public class EnemyBase : MonoBehaviour
     /// </summary>
     private void Idle()
     {
-        if(timerIdle < timeIdle) //如果計時器<等待時間
+        if (timerIdle < timeIdle) //如果計時器<等待時間
         {
             timerIdle += Time.deltaTime; //增加時間
             ani.SetBool("走路開關", false);
@@ -168,7 +175,7 @@ public class EnemyBase : MonoBehaviour
         {
             RandomDirection();
             timerIdle = 0;  //計時器歸零
-            timeWalk = Random.Range(v2WalkRandom.x,v2WalkRandom.y);  //設定其後的隨機走路時間
+            timeWalk = Random.Range(v2WalkRandom.x, v2WalkRandom.y);  //設定其後的隨機走路時間
             state = StateEnemy.walk;  //改變狀態為走路
         }
     }
@@ -195,7 +202,7 @@ public class EnemyBase : MonoBehaviour
     /// </summary>
     private void WalkInFixedUpdate()
     {
-        if(state==StateEnemy.walk) rig.velocity = transform.right*speed*Time.deltaTime+Vector3.up*rig.velocity.y;
+        if (state == StateEnemy.walk) rig.velocity = transform.right * speed * Time.deltaTime + Vector3.up * rig.velocity.y;
     }
     /// <summary>
     /// 隨機方向:隨機面向左邊或右邊 (右:(0,0,0)左(0,180,0))
@@ -206,14 +213,12 @@ public class EnemyBase : MonoBehaviour
         if (random == 0) transform.eulerAngles = Vector2.up * 180;
         else transform.eulerAngles = Vector2.zero;
     }
-    [Range(0.5f,5)]
-    public float cdAttack = 2f;
-    private float timerAttack;
     private void Attack()
     {
         if (timerAttack < cdAttack)
         {
             timerAttack += Time.deltaTime;
+            ani.SetBool("走路開關", false);
         }
         else
         {
@@ -227,6 +232,36 @@ public class EnemyBase : MonoBehaviour
     {
         timerAttack = 0;
         ani.SetTrigger("攻擊觸發");
+    }
+    public void Hurt(float damage)
+    {
+        hp -= damage;
+        ani.SetTrigger("受傷觸發");
+        if (hp <= 0) Dead();
+    }
+    /// <summary>
+    /// 死亡:死亡動畫、狀態、關閉腳本、碰撞氣、加速度及剛體凍結
+    /// </summary>
+    private void Dead()
+    {
+        hp = 0;
+        ani.SetBool("死亡動畫", true);
+        state = StateEnemy.dead;
+        GetComponent<CapsuleCollider2D>().enabled = false;  //關閉碰撞器
+        rig.velocity = Vector3.zero;  //加速度歸零
+        rig.constraints = RigidbodyConstraints2D.FreezeAll;  //剛體全部凍結
+        DropProp();
+        enabled = false;
+
+    }
+    private void DropProp()
+    {
+        if(Random.value <= propProbability)
+        {
+            //生成(物件,座標,角度)
+            //Quaternion.identity 為零角度=vector3.zero
+            Instantiate(goProp, transform.position + Vector3.up * 0.5f, Quaternion.identity);
+        }
     }
     #endregion
 
