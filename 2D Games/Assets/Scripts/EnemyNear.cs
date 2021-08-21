@@ -31,8 +31,8 @@ public class EnemyNear : EnemyBase
     /// </summary>
     private void CheckPlayerInAttackArea()
     {
-        Collider2D hit = Physics2D.OverlapBox(transform.position + transform.right *
-            checkAttackOffset.x + transform.up * checkAttackOffset.y, checkAttaackSize,0,1 << 7);
+        hit = Physics2D.OverlapBox(transform.position + transform.right *
+            checkAttackOffset.x + transform.up * checkAttackOffset.y, checkAttaackSize, 0, 1 << 7);
         if (hit) state = StateEnemy.attack;
     }
     protected override void AttackMethod()
@@ -50,9 +50,23 @@ public class EnemyNear : EnemyBase
     /// </summary>
     private IEnumerator DamageDelayed()
     {
-        yield return new WaitForSeconds(attackDelayFirst);
-        print("第一次攻擊");
-        player.Injure(atk);
+        //取得陣列數量語法:陣列欄位.Length
+        for (int i = 0; i < attacksDelay.Length; i++)
+        {
+            //取得陣列資料語法:陣列欄位[編號]
+            yield return new WaitForSeconds(attacksDelay[i]);
+            if (hit) player.Injure(atk);  //若碰撞區域存在，則造成相應傷害
+            //等待攻擊後恢復時間
+            yield return new WaitForSeconds(attackRestore);
+            //若玩家還在區域內則攻擊，否則就執行其他指令
+            int stateRandom = Random.Range(0, 2);
+            if (hit) state = StateEnemy.attack;
+            else 
+            {
+                if (stateRandom == 0) state = StateEnemy.idle;
+                else state = StateEnemy.walk;
+            }
+        }
     }
     #endregion
 }

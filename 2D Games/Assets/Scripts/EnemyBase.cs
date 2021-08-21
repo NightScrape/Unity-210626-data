@@ -24,8 +24,13 @@ public class EnemyBase : MonoBehaviour
     /// 隨機走路時間
     /// </summary>
     public Vector2 v2WalkRandom = new Vector2(3, 6);
-    [Header("第一次攻擊延遲"), Range(0.5f, 5)]
-    public float attackDelayFirst = 0.5f;
+    /// <summary>
+    /// 用陣列保存相同類型的表格，擁有編號與值兩份資料
+    /// </summary>
+    [Header("攻擊延遲,可自行設定數量"), Range(0, 5)]
+    public float[] attacksDelay;
+    [Header("攻擊完成後多久恢復原本狀態"), Range(0, 5)]
+    public float attackRestore = 1;
     #endregion
     #region 不公開欄位
     //將私人欄位顯示於屬性面板上
@@ -48,6 +53,10 @@ public class EnemyBase : MonoBehaviour
     private float timerWalk;
 
     #endregion
+    /// <summary>
+    /// 攻擊區域的碰撞:保存玩家是否進入攻擊區域與玩家碰撞
+    /// </summary>
+    protected Collider2D hit;
     protected Player player;
     #region 事件
     private void Start()

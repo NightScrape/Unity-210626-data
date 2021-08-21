@@ -282,7 +282,10 @@ MonoBehaviour:
   speed: 30
   v2IdleRandom: {x: 2, y: 5}
   v2WalkRandom: {x: 3, y: 6}
-  attackDelayFirst: 0.5
+  attacksDelay:
+  - 0.25
+  - 0.2
+  attackRestore: 1
   state: 0
   checkForwardOffset: {x: 0.6, y: -0.92, z: 0}
   checkForwardRadius: 0.1
@@ -692,7 +695,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596189580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.92, y: -1.48, z: 0}
+  m_LocalPosition: {x: -8.72, y: -1.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -749,7 +752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movespeed: 200
   jumpheight: 800
-  hp: 100
+  hp: 300
   onfloor: 1
   gravity: 0.01
   groundOffset: {x: 0, y: -2.5, z: 0}
