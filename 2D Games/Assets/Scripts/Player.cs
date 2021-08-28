@@ -43,6 +43,9 @@ public class Player : MonoBehaviour
     [Header("攻擊區域的位移及大小")]
     public Vector2 checkAttackOffset;
     public Vector3 checkAttaackSize;
+    [Header("攻擊力"), Range(0, 200)]
+    public float attack = 20;
+    private GameObject goPropHit;
     #endregion
     #region 事件
     private void Start()
@@ -153,8 +156,6 @@ public class Player : MonoBehaviour
 
         }
     }
-    [Header("攻擊力"), Range(0, 200)]
-    public float attack = 20;
     /// <summary>
     /// 攻擊
     /// </summary>
@@ -226,7 +227,6 @@ public class Player : MonoBehaviour
                 break;
         }
     }
-    private GameObject goPropHit;
     /*碰撞事件需求
      * 1.執行碰撞雙方須皆有Collider
      * 2.其中一個要有rigidbody
