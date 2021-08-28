@@ -236,7 +236,8 @@ public class Player : MonoBehaviour
             default:
                 break;
         }
-    }
+    }    
+    private GameObject DeathZone;
     /*碰撞事件需求
      * 1.執行碰撞雙方須皆有Collider
      * 2.其中一個要有rigidbody
@@ -246,10 +247,6 @@ public class Player : MonoBehaviour
     {
         goPropHit = collision.gameObject;
         EatProp(collision.gameObject.tag);
-    }
-    private GameObject DeathZone;
-    private void OnCollisionExit2D(Collision2D collision)
-    {
         DeathZone = collision.gameObject;
         if (collision.gameObject.name == "死亡區域") Death();
     }
