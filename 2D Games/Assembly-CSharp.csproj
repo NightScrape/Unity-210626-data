@@ -62,15 +62,15 @@
     <Compile Include="Assets\Scripts\learnLerp.cs" />
     <Compile Include="Assets\Scripts\Car.cs" />
     <Compile Include="Assets\Scripts\LearnLinQ.cs" />
+    <Compile Include="Assets\Scripts\AudioController.cs" />
     <Compile Include="Assets\Scripts\EnemyBase.cs" />
     <Compile Include="Assets\Scripts\APINonStatic.cs" />
     <Compile Include="Assets\Scripts\Example.cs" />
     <Compile Include="Assets\Scripts\CameraControl.cs" />
     <Compile Include="Assets\Scripts\SceneController.cs" />
-    <Compile Include="Assets\Scripts\APIStatic.cs" />
-    <Compile Include="Assets\Scripts\TeleportTrigger.cs" />
     <Compile Include="Assets\Scripts\GameOverController.cs" />
-    <Compile Include="Assets\Scripts\AudioController.cs" />
+    <Compile Include="Assets\Scripts\TeleportTrigger.cs" />
+    <Compile Include="Assets\Scripts\APIStatic.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
