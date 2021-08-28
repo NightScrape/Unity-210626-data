@@ -68,6 +68,9 @@
     <Compile Include="Assets\Scripts\CameraControl.cs" />
     <Compile Include="Assets\Scripts\SceneController.cs" />
     <Compile Include="Assets\Scripts\APIStatic.cs" />
+    <Compile Include="Assets\Scripts\TeleportTrigger.cs" />
+    <Compile Include="Assets\Scripts\GameOverController.cs" />
+    <Compile Include="Assets\Scripts\AudioController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

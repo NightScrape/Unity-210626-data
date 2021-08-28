@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;  //引用介面API
 using System.Collections;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -46,6 +47,11 @@ public class Player : MonoBehaviour
     [Header("攻擊力"), Range(0, 200)]
     public float attack = 20;
     private GameObject goPropHit;
+    [Header("死亡事件")]
+    public UnityEvent OnDead;
+    [Header("音效區域")]
+    public AudioClip soundJump;
+    public AudioClip soundAttack;
     #endregion
     #region 事件
     private void Start()
@@ -54,6 +60,7 @@ public class Player : MonoBehaviour
         //作用:取得該物件的鋼體元件
         rig = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
+        aud = GetComponent<AudioSource>();
 
         textHP = GameObject.Find("文字血量").GetComponent<Text>();
         textHP.text = "HP" + hp;
@@ -152,6 +159,7 @@ public class Player : MonoBehaviour
         //如果按下空白鍵 並且 角色在地板上，則角色會往上跳躍
         if (Input.GetKeyDown(KeyCode.Space) && onfloor)  //一段跳普通寫法
         {
+            aud.PlayOneShot(soundJump, Random.Range(0.7f, 1.1f));
             rig.AddForce(new Vector2(0, jumpheight));
 
         }
@@ -167,6 +175,7 @@ public class Player : MonoBehaviour
             isAttack = true;
             Collider2D hit = Physics2D.OverlapBox(transform.position + transform.right *
             checkAttackOffset.x + transform.up * checkAttackOffset.y, checkAttaackSize, 0, 1 << 8);
+            aud.PlayOneShot(soundAttack, Random.Range(0.7f, 1.1f));
             if (hit)
             {
                 hit.GetComponent<EnemyBase>().Hurt(attack);
@@ -206,6 +215,7 @@ public class Player : MonoBehaviour
     {
         hp = 0;  //血量歸零
         ani.SetBool("死亡動畫", true); //死亡動畫
+        OnDead.Invoke(); //呼叫死亡事件
         enabled = false;  //關閉腳本
     }
     /// <summary>
@@ -236,6 +246,12 @@ public class Player : MonoBehaviour
     {
         goPropHit = collision.gameObject;
         EatProp(collision.gameObject.tag);
+    }
+    private GameObject DeathZone;
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        DeathZone = collision.gameObject;
+        if (collision.gameObject.name == "死亡區域") Death();
     }
     #endregion 
 }

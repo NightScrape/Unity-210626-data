@@ -251,6 +251,8 @@ public class EnemyBase : MonoBehaviour
         rig.velocity = Vector3.zero;  //加速度歸零
         rig.constraints = RigidbodyConstraints2D.FreezeAll;  //剛體全部凍結
         DropProp();
+        //通知傳送管理數量-1
+        TeleportTrigger.CountAllEnemy--;
         enabled = false;
 
     }
